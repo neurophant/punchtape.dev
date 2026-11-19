@@ -36,6 +36,8 @@
   h1 .soft { color: var(--muted); font-weight: 500; display: block; }
   h2 { font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace; font-size: 20px; font-weight: 600; margin: 0 0 20px; }
   h2::before { content: "## "; color: var(--green); }
+  h3 { font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace; font-size: 15px; font-weight: 600; margin: 36px 0 8px; color: var(--text); }
+  h3::before { content: "### "; color: var(--green); }
   p { margin: 0 0 14px; }
   .badges { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
   .badges span { display: inline-block; border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; margin: 3px 6px 3px 0; background: var(--panel); }
@@ -168,12 +170,23 @@
   <ol start="3">
     <li>Describe what you want in ordinary words - a new utility, a feature, a bug, or a whole existing repo brought under the machine. Every scenario is walked in <a href="https://github.com/neurophant/punchtape/blob/main/docs/USAGE.md">USAGE</a> with a ready prompt for each.</li>
   </ol>
-  <p>Installing by hand instead - one command in a terminal:</p>
+  <p>That's it. The assistant and the machine do the work. You read the result.</p>
+  <h3>Manual installation</h3>
+  <p>Homebrew (macOS and Linux):</p>
+  <div class="cmd">
+    <div class="cmd-bar"><span>terminal</span><button type="button">Copy</button></div>
+    <div class="cmd-body">brew install neurophant/tap/punchtape</div>
+  </div>
+  <p>Debian and Ubuntu - the <code>.deb</code> for your architecture sits on the <a href="https://github.com/neurophant/punchtape/releases/latest">releases page</a>:</p>
+  <div class="cmd">
+    <div class="cmd-bar"><span>terminal</span><button type="button">Copy</button></div>
+    <div class="cmd-body">sudo dpkg -i punchtape_0.5.1_amd64.deb</div>
+  </div>
+  <p>Any unix, with nothing installed - one command in a terminal:</p>
   <div class="cmd">
     <div class="cmd-bar"><span>terminal</span><button type="button">Copy</button></div>
     <div class="cmd-body">curl -fsSL https://github.com/neurophant/punchtape/releases/latest/download/get-punchtape.sh | bash</div>
   </div>
-  <p>That's it. The assistant and the machine do the work. You read the result.</p>
 </section>
 
 <section>
@@ -185,15 +198,16 @@
 
 <section>
   <h2>If the agent tries to cheat</h2>
-  <p>It can refuse to play - that is your call as the task owner. While it plays, it cannot declare done: the act is one bare line the machine re-checks, the verdict comes from commands the machine runs itself, and any hole - an unclaimed line, an unresolved word, an unpinned check - holds the finish.</p>
-  <p>Everything it did lives in plain files you can read with your own eyes, in <code>.punchtape/</code> - the zone inside your project:</p>
+  <p>It can refuse to play. That is your call as the task owner. While it plays, it cannot declare done. The act is one bare line the machine re-checks. The verdict comes from commands the machine runs itself. And any hole (an unclaimed line, an unresolved word, an unpinned check) holds the finish.</p>
+  <p>And the cheating that tries to hide is the most visible thing of all. The whole life of the task sits in plain files inside <code>.punchtape/</code>. Open them in any editor:</p>
   <ul>
-    <li><strong>the spec pages</strong> - your words and the checks that claim them, side by side</li>
-    <li><strong>the report</strong> - every failure: what was expected, what actually happened</li>
-    <li><strong>the holes ledger</strong> - every line openly crossed out, with a reason</li>
-    <li><strong>the state page</strong> - where the task stands right now</li>
+    <li><strong>the spec pages</strong>: your words and the checks that claim them, side by side.</li>
+    <li><strong>the report</strong>: every failure, with what was expected and what actually happened.</li>
+    <li><strong>the holes ledger</strong>: every line openly crossed out, with a reason.</li>
+    <li><strong>the state page</strong>: where the task stands right now.</li>
   </ul>
-  <p>A finish is sealed with a checksum over exactly what passed. Open any file in any editor - no model in between, nothing hidden behind a UI.</p>
+  <p>Trace any meaning from your prompt to the code. Your line stands in <code>demands.md</code>. Its requirements unwind on the spec page. Each requirement sits beside the check that proves it, and each check claims the exact lines of code it stands behind: one unbroken chain of plain files.</p>
+  <p>A finish is sealed with a checksum over exactly what passed. The journal underneath is verified by the machine on every run, and a hand-edited record is rejected, not trusted. Nothing recorded can be quietly rewritten. What stands, stands.</p>
 </section>
 
 <section>
