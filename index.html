@@ -61,19 +61,20 @@
   .era { color: var(--muted); font-size: 14px; margin-top: 14px; }
   ol, ul { padding-left: 24px; margin: 0 0 14px; }
   li { margin-bottom: 8px; }
-  .step-code { margin: 14px 0 18px; }
-  pre {
-    background: #05070b; border: 1px solid var(--border); border-radius: 8px;
-    padding: 14px 16px; overflow-x: auto; font-size: 14px; margin: 0; position: relative;
+  .cmd { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: #05070b; margin: 14px 0 18px; }
+  .cmd-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 6px 8px 6px 12px; border-bottom: 1px solid var(--border); background: var(--panel); }
+  .cmd-bar span { color: var(--muted); font-size: 12px; font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace; }
+  .cmd-bar button {
+    background: var(--bg); color: var(--muted); border: 1px solid var(--border); border-radius: 6px;
+    padding: 3px 12px; font-size: 12px; cursor: pointer;
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
   }
-  pre .ln { display: block; padding: 14px 130px 14px 16px; }
-  pre button {
-    position: absolute; top: 10px; right: 10px; background: var(--panel); color: var(--muted);
-    border: 1px solid var(--border); border-radius: 6px; padding: 4px 12px; font-size: 13px; cursor: pointer;
+  .cmd-bar button:hover { color: var(--text); }
+  .cmd-body {
+    padding: 12px 14px; font-size: 14px; line-height: 1.6; color: var(--text);
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, "Liberation Mono", monospace;
+    white-space: pre-wrap; overflow-wrap: anywhere; word-break: normal;
   }
-  pre button:hover { color: var(--text); }
-  pre.wrap { white-space: pre-wrap; word-break: break-word; }
-  pre.wrap button { position: absolute; right: 10px; bottom: 10px; }
   .muted { color: var(--muted); }
   .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
   .grid a {
@@ -160,15 +161,17 @@
     <li>Open the folder the work will live in - a new empty one, or your existing project.</li>
     <li>Paste this line to your assistant. It installs the machine and sets everything up by itself:</li>
   </ol>
-  <div class="step-code">
-    <pre class="wrap"><span class="ln">Read https://github.com/neurophant/punchtape/blob/main/docs/BOOTSTRAP.md and act by it.</span><button type="button">Copy</button></pre>
+  <div class="cmd">
+    <div class="cmd-bar"><span>prompt</span><button type="button">Copy</button></div>
+    <div class="cmd-body">Read https://github.com/neurophant/punchtape/blob/main/docs/BOOTSTRAP.md and act by it.</div>
   </div>
   <ol start="3">
     <li>Describe what you want in ordinary words - a new utility, a feature, a bug, or a whole existing repo brought under the machine. Every scenario is walked in <a href="https://github.com/neurophant/punchtape/blob/main/docs/USAGE.md">USAGE</a> with a ready prompt for each.</li>
   </ol>
   <p>Installing by hand instead - one command in a terminal:</p>
-  <div class="step-code">
-    <pre><span class="ln">curl -fsSL https://github.com/neurophant/punchtape/releases/latest/download/get-punchtape.sh | bash</span><button type="button">Copy</button></pre>
+  <div class="cmd">
+    <div class="cmd-bar"><span>terminal</span><button type="button">Copy</button></div>
+    <div class="cmd-body">curl -fsSL https://github.com/neurophant/punchtape/releases/latest/download/get-punchtape.sh | bash</div>
   </div>
   <p>That's it. The assistant and the machine do the work. You read the result.</p>
 </section>
@@ -225,9 +228,9 @@
 </footer>
 
 <script>
-document.querySelectorAll('pre button').forEach(function (b) {
+document.querySelectorAll('.cmd-bar button').forEach(function (b) {
   b.addEventListener('click', function () {
-    var line = b.closest('pre').querySelector('.ln').textContent.trim();
+    var line = b.closest('.cmd').querySelector('.cmd-body').textContent.trim();
     navigator.clipboard.writeText(line).then(function () {
       b.textContent = 'Copied';
       setTimeout(function () { b.textContent = 'Copy'; }, 1600);
