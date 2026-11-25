@@ -109,7 +109,7 @@
   <h1><span class="soft">Your AI writes the code.</span>
   punchtape makes it get the entire job done - with every claim proven.</h1>
   <div class="badges">
-    <span>Free</span><span>MIT</span><span>Linux and macOS</span><span>Works offline</span><span>No account</span><span>v0.5.1</span>
+    <span>Free</span><span>MIT</span><span>Linux and macOS</span><span>Works offline</span><span>No account</span><span>v0.6.0</span>
   </div>
   <div class="cta">
     <a class="primary" href="#try">Try it</a>
@@ -171,6 +171,13 @@
     <li>Describe what you want in ordinary words - a new utility, a feature, a bug, or a whole existing repo brought under the machine. Every scenario is walked in <a href="https://github.com/neurophant/punchtape/blob/main/docs/USAGE.md">USAGE</a> with a ready prompt for each.</li>
   </ol>
   <p>That's it. The assistant and the machine do the work. You read the result.</p>
+  <h3>As a skill</h3>
+  <p>The start from step 2 also ships as a skill, <a href="https://github.com/neurophant/punchtape/blob/main/skills/punchtape/SKILL.md">skills/punchtape/SKILL.md</a>, listed in the <a href="https://github.com/sickn33/agentic-awesome-skills">agentic-awesome-skills</a> catalog. Install it once, and the skill tells your assistant to step in whenever a project has a <code>.punchtape/</code> folder or you mention punchtape.</p>
+  <div class="cmd">
+    <div class="cmd-bar"><span>terminal</span><button type="button">Copy</button></div>
+    <div class="cmd-body">npx skills add neurophant/punchtape</div>
+  </div>
+  <p>The installer is Vercel's <code>skills</code> CLI (Node.js 22.20 or later). It finds the agents on your machine and asks which of them get the skill, in the current project or, with <code>-g</code>, in every project. The CLI collects anonymous usage data, and <code>DISABLE_TELEMETRY=1</code> switches that off. Or skip the installer and copy the file into your agent's skills folder by hand.</p>
   <h3>Manual installation</h3>
   <p>Homebrew (macOS and Linux):</p>
   <div class="cmd">
@@ -180,12 +187,18 @@
   <p>Debian and Ubuntu - the <code>.deb</code> for your architecture sits on the <a href="https://github.com/neurophant/punchtape/releases/latest">releases page</a>:</p>
   <div class="cmd">
     <div class="cmd-bar"><span>terminal</span><button type="button">Copy</button></div>
-    <div class="cmd-body">sudo dpkg -i punchtape_0.5.1_amd64.deb</div>
+    <div class="cmd-body">sudo dpkg -i punchtape_0.6.0_amd64.deb</div>
   </div>
   <p>Any unix, with nothing installed - one command in a terminal:</p>
   <div class="cmd">
     <div class="cmd-bar"><span>terminal</span><button type="button">Copy</button></div>
     <div class="cmd-body">curl -fsSL https://github.com/neurophant/punchtape/releases/latest/download/get-punchtape.sh | bash</div>
+  </div>
+  <h3>Check a verdict yourself</h3>
+  <p>The agent runs the machine, and the zone is a folder the agent can write. One call trusts none of it - it runs the build and every row again, writes nothing, and answers by its exit code:</p>
+  <div class="cmd">
+    <div class="cmd-bar"><span>terminal</span><button type="button">Copy</button></div>
+    <div class="cmd-body">punchtape --verify</div>
   </div>
 </section>
 
@@ -207,7 +220,7 @@
     <li><strong>the state page</strong>: where the task stands right now.</li>
   </ul>
   <p>Trace any meaning from your prompt to the code. Your line stands in <code>demands.md</code>. Its requirements unwind on the spec page. Each requirement sits beside the check that proves it, and each check claims the exact lines of code it stands behind: one unbroken chain of plain files.</p>
-  <p>A finish is sealed with a checksum over exactly what passed. The journal underneath is verified by the machine on every run, and a hand-edited record is rejected, not trusted. Nothing recorded can be quietly rewritten. What stands, stands.</p>
+  <p>A finish is sealed with a checksum over exactly what passed. The journal underneath is verified by the machine on every run, and a damaged record is rejected, not trusted. That check proves the journal agrees with itself, not who wrote it: an agent that recomputes every hash can rewrite it consistently. A verdict you did not watch being earned is re-proved where the agent cannot write, in CI or on another machine - every row runs again there. What stands there, stands.</p>
 </section>
 
 <section>
@@ -215,6 +228,7 @@
   <ul>
     <li>The machine compares real output byte by byte - it never reads meaning. A recorded finish proves the checks passed exactly as written. The last look stays yours.</li>
     <li>It cannot know a word that was never written down - your words enter the machine from a file, not from your chat.</li>
+    <li>The zone is within your agent's reach. The machine checks that the journal agrees with itself, not who wrote it. A verdict you did not watch being earned is re-proved with <code>punchtape --verify</code>, where the agent cannot write: in CI or on another machine, every row runs again.</li>
     <li>Nothing is silently dropped: every line of your task must be resolved, every file claimed by a check or crossed out openly with a reason. Otherwise - no finish.</li>
     <li>punchtape is an arbiter, not a coordinator. Several agents may work one zone, one at a time - who does what stays your call.</li>
   </ul>
@@ -227,6 +241,8 @@
     <a href="https://github.com/neurophant/punchtape/tree/main/demos">Demos<small>four recorded sessions</small></a>
     <a href="https://doi.org/10.2139/ssrn.7566638">The paper<small>field evaluation, DOI</small></a>
     <a href="https://github.com/neurophant/punchtape/blob/main/docs/METRICS.md">The numbers<small>every number, series by series</small></a>
+    <a href="https://betalist.com/startups/punchtape">BetaList<small>featured startup</small></a>
+    <a href="https://startupbase.io/products/punchtape">StartupBase<small>Daily Winner</small></a>
     <a href="https://devhunt.org/tool/punchtape">DevHunt<small>launch card</small></a>
     <a href="https://peerlist.io/neurophant/project/punchtape">Peerlist<small>project page</small></a>
     <a href="https://uneed.best/tool/punchtape">Uneed<small>tool page</small></a>
@@ -237,7 +253,7 @@
 </main>
 
 <footer>
-  <div class="mono">punchtape v0.5.1 &#183; MIT &#183; Linux and macOS &#183; offline &#183; no account</div>
+  <div class="mono">punchtape v0.6.0 &#183; MIT &#183; Linux and macOS &#183; offline &#183; no account</div>
   <div>Say hi: <a href="mailto:hey@neurophant.tech">hey@neurophant.tech</a> &#183; &#169; 2026 Anton Smolin</div>
 </footer>
 
