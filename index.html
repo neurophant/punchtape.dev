@@ -37,6 +37,7 @@
   header nav a { color: var(--muted); margin-left: 18px; }
   header nav a:hover { color: var(--text); }
   section { margin: 64px 0; }
+  .hero h2 { margin-top: 32px; }
   h1 { font-size: 34px; line-height: 1.25; margin: 40px 0 16px; font-weight: 600; }
   h1 .soft { color: var(--muted); font-weight: 500; display: block; }
   h2 { font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace; font-size: 20px; font-weight: 600; margin: 0 0 20px; }
@@ -54,7 +55,6 @@
   .cta .ghost { border: 1px solid var(--border); color: var(--text); }
   figcaption { color: var(--muted); font-size: 14px; margin-top: 12px; text-align: center; }
   .demo { margin: 16px 0 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #05070b; }
-  .demo a { display: block; }
   .demo video { display: block; width: 100%; height: auto; }
   .demo img { display: block; width: 100%; height: auto; }
   .demo figcaption { margin: 0; padding: 10px 14px; border-top: 1px solid var(--border); background: var(--panel); color: var(--text); text-align: left; }
@@ -110,7 +110,7 @@
 
 <main>
 
-<section>
+<section class="hero">
   <h1><span class="soft">Your AI writes the code.</span>
   punchtape makes it get the entire job done - with every claim proven.</h1>
   <div class="badges">
@@ -118,11 +118,17 @@
   </div>
   <div class="cta">
     <a class="primary" href="#try">Try it</a>
-    <a class="ghost" href="https://github.com/neurophant/punchtape">Read the code</a>
+    <a class="ghost" href="https://github.com/neurophant/punchtape">Star on GitHub</a>
   </div>
-  <figure class="demo" style="margin:0">
-    <a href="assets/demo-agent.gif"><img src="assets/demo-agent.gif" alt="A recorded session: the agent works, the machine runs every check itself, the finish is recorded only when everything passes."></a>
-    <figcaption><strong>Your words are taken down word for word.</strong> The machine runs every check itself. The agent cannot declare done - it can only make done true.</figcaption>
+  <p><strong>Your words are taken down word for word.</strong> The machine runs every check itself. The agent cannot declare done - it can only make done true.</p>
+  <h2>The same task, twice</h2>
+  <figure class="demo">
+    <img src="assets/demo-without-punchtape.gif" width="1200" height="686" data-video="assets/demo-without-punchtape.mp4" data-poster="assets/demo-without-punchtape-poster.png" alt="Without punchtape: the agent ships the task, the bug is yours to find">
+    <figcaption><strong>Without punchtape.</strong> The agent says done. The service answers 500 where the task asked for a 503, so the checking is yours: <strong>two rounds</strong>.</figcaption>
+  </figure>
+  <figure class="demo">
+    <img src="assets/demo-with-punchtape.gif" width="1200" height="686" data-video="assets/demo-with-punchtape.mp4" data-poster="assets/demo-with-punchtape-poster.png" alt="With punchtape: the same task, the machine makes the agent prove every line, the bug falls out before submission">
+    <figcaption><strong>With punchtape.</strong> The same task, written once. The machine makes the agent prove every line of the task, so the bug falls out before submission: <strong>one round</strong>.</figcaption>
   </figure>
 </section>
 
@@ -156,18 +162,6 @@
     <li>The loop is yours: check, send back, re-check.</li>
   </ol>
   <p>An AI left alone grades its own homework - the claim "done" costs it nothing. punchtape takes that job away. Your words become the law of the task. Each claim is measured by running it. The work cannot end until it is genuinely finished.</p>
-</section>
-
-<section>
-  <h2>The same task, twice</h2>
-  <figure class="demo">
-    <img src="assets/demo-without-punchtape.gif" loading="lazy" width="1200" height="686" data-video="assets/demo-without-punchtape.mp4" data-poster="assets/demo-without-punchtape-poster.png" alt="Without punchtape: the agent ships the task, the bug is yours to find">
-    <figcaption><strong>Without punchtape.</strong> The agent says done. The service answers 500 where the task asked for a 503, so the checking is yours: two rounds.</figcaption>
-  </figure>
-  <figure class="demo">
-    <img src="assets/demo-with-punchtape.gif" loading="lazy" width="1200" height="686" data-video="assets/demo-with-punchtape.mp4" data-poster="assets/demo-with-punchtape-poster.png" alt="With punchtape: the same task, the machine makes the agent prove every line, the bug falls out before submission">
-    <figcaption><strong>With punchtape.</strong> The same task, written once. The machine makes the agent prove every line of the task, so the bug falls out before submission: one round.</figcaption>
-  </figure>
 </section>
 
 <section id="try">
